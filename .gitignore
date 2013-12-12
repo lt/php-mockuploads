@@ -1,0 +1,6 @@
+*
+!.gitignore
+!LICENSE
+!README.md
+!config.m4
+!mockuploads.c
