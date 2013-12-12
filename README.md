@@ -19,7 +19,7 @@ make
 
 Then add an `extension=/path/to/php-mockuploads.so` to your php.ini
 
-How to usr:
+How to use:
 -----------
 
 ```
