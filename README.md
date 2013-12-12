@@ -8,3 +8,15 @@ The funtions `is_uploaded_file` and `move_uploaded_file` reference an internal h
 The extension exposes a single new function that injects a path into the internal hash table, and also adds an entry to the `$_FILES` array.
 
 The function is: `register_uploaded_file($path)`
+
+How to build:
+-------------
+
+```
+cd php-mockuploads
+phpize
+./configure
+make
+```
+
+Then add an `extension=/path/to/php-mockuploads.so` to your php.ini
