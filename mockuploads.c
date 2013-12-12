@@ -22,23 +22,9 @@ PHP_FUNCTION(register_uploaded_file)
 		ALLOC_HASHTABLE(uploaded_files);
 		zend_hash_init(uploaded_files, 5, NULL, (dtor_func_t) free_estring, 0);
 		SG(rfc1867_uploaded_files) = uploaded_files;
-    }
+	}
 
-    zend_hash_add(SG(rfc1867_uploaded_files), path, path_len, &path, sizeof(char *), NULL);
-
-	// Create $_FILES entry
-	HashTable *_FILES;
-	zval *file_entry;
-
-	_FILES = Z_ARRVAL_P(PG(http_globals)[TRACK_VARS_FILES]);
-
-	ALLOC_ZVAL(file_entry);
-	array_init(file_entry);
-	INIT_PZVAL(file_entry);
-
-	add_assoc_string_ex(file_entry, "name", sizeof("name"), path, 1);
-
-	zend_hash_next_index_insert(_FILES, &file_entry, sizeof(zval *), NULL);
+	zend_hash_add(SG(rfc1867_uploaded_files), path, path_len, &path, sizeof(char *), NULL);
 
 	RETURN_TRUE;
 }
