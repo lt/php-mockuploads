@@ -31,7 +31,7 @@ $_FILES['myFormField'] = [
 	'error' => UPLOAD_ERR_OK,
 	'size' => filesize($myFilePath),
 	'tmp_name' => $myFilePath
-]
+];
 
 register_uploaded_file($myFilePath);
 ```
