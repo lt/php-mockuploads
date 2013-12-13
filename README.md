@@ -35,3 +35,10 @@ $_FILES['myFormField'] = [
 
 register_uploaded_file($myFilePath);
 ```
+
+TODO:
+-----
+
+* Check if path actually exists (maybe)
+* Lock file when registered as an upload (PHP does this until you move the uploaded file)
+* unregister_uploaded_file (For cleaning up when tests are not run with process isolation)
