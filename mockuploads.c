@@ -29,12 +29,31 @@ PHP_FUNCTION(register_uploaded_file)
 	RETURN_TRUE;
 }
 
+PHP_FUNCTION(unregister_uploaded_file)
+{
+	char *path;
+	int path_len;
+
+	if (zend_parse_parameters(ZEND_NUM_ARGS() TSRMLS_CC, "s", &path, &path_len) == FAILURE) {
+		RETURN_FALSE;
+	}
+
+	if (SG(rfc1867_uploaded_files)) {
+		if (zend_hash_del(SG(rfc1867_uploaded_files), path, path_len) == SUCCESS) {
+			RETURN_TRUE;
+		}
+	}
+
+	RETURN_FALSE;
+}
+
 ZEND_BEGIN_ARG_INFO_EX(arginfo_register_uploaded_file, 0, 0, 1)
 	ZEND_ARG_INFO(0, path)
 ZEND_END_ARG_INFO()
 
 const zend_function_entry mockuploads_functions[] = {
 	PHP_FE(register_uploaded_file, arginfo_register_uploaded_file)
+	PHP_FE(unregister_uploaded_file, arginfo_register_uploaded_file)
 	PHP_FE_END
 };
 

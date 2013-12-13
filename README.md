@@ -5,7 +5,7 @@ This extension provides the ability to register file paths as if they were uploa
 
 The funtions `is_uploaded_file` and `move_uploaded_file` reference an internal hash table, and cannot be influenced by changing the `$_FILES` superglobal.
 
-The extension exposes a single new function that adds the specified path into the internal hash table.
+The extension adds two new functions to register and unregister file paths in the internal hash table.
 
 How to build:
 -------------
@@ -34,6 +34,11 @@ $_FILES['myFormField'] = [
 ];
 
 register_uploaded_file($myFilePath);
+
+// Run tests
+
+unregister_uploaded_file($myFilePath);
+unset($_FILES['myFormField']);
 ```
 
 TODO:
@@ -41,4 +46,3 @@ TODO:
 
 * Check if path actually exists (maybe)
 * Lock file when registered as an upload (PHP does this until you move the uploaded file)
-* unregister_uploaded_file (For cleaning up when tests are not run with process isolation)
